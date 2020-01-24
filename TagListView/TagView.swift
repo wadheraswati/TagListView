@@ -121,6 +121,12 @@ open class TagView: UIButton {
     
     // MARK: remove button
     
+//    let removeButton: UIButton = {
+//        let btn = UIButton(type: .custom)
+//        btn.setImage(UIImage(named: "tag_close_btn"), for: .normal)
+//        btn.sizeToFit()
+//        return btn
+//    }()
     let removeButton = CloseButton()
     
     @IBInspectable open var enableRemoveButton: Bool = false {
@@ -132,19 +138,19 @@ open class TagView: UIButton {
     
     @IBInspectable open var removeButtonIconSize: CGFloat = 12 {
         didSet {
-            removeButton.iconSize = removeButtonIconSize
+//            removeButton.iconSize = removeButtonIconSize
             updateRightInsets()
         }
     }
     
     @IBInspectable open var removeIconLineWidth: CGFloat = 3 {
         didSet {
-            removeButton.lineWidth = removeIconLineWidth
+//            removeButton.lineWidth = removeIconLineWidth
         }
     }
-    @IBInspectable open var removeIconLineColor: UIColor = UIColor.white.withAlphaComponent(0.54) {
+    @IBInspectable open var removeIconLineColor: UIColor = UIColor.red.withAlphaComponent(0.54) {
         didSet {
-            removeButton.lineColor = removeIconLineColor
+//            removeButton.lineColor = removeIconLineColor
         }
     }
     
@@ -192,14 +198,14 @@ open class TagView: UIButton {
             size.width = size.height
         }
         if enableRemoveButton {
-            size.width += removeButtonIconSize + paddingX
+            size.width += removeButton.bounds.width + paddingX
         }
         return size
     }
     
     private func updateRightInsets() {
         if enableRemoveButton {
-            titleEdgeInsets.right = paddingX  + removeButtonIconSize + paddingX
+            titleEdgeInsets.right = paddingX + removeButton.bounds.width + paddingX
         }
         else {
             titleEdgeInsets.right = paddingX
@@ -209,8 +215,8 @@ open class TagView: UIButton {
     open override func layoutSubviews() {
         super.layoutSubviews()
         if enableRemoveButton {
-            removeButton.frame.size.width = paddingX + removeButtonIconSize + paddingX
-            removeButton.frame.origin.x = self.frame.width - removeButton.frame.width
+//            removeButton.frame.size.width = paddingX + removeButtonIconSize + paddingX
+            removeButton.frame.origin.x = self.frame.width - removeButton.frame.width - paddingX
             removeButton.frame.size.height = self.frame.height
             removeButton.frame.origin.y = 0
         }
