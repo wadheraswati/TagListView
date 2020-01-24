@@ -214,8 +214,9 @@ open class TagListView: UIView {
     // MARK: - Interface Builder
     
     open override func prepareForInterfaceBuilder() {
-        addTag("Welcome")
-        addTag("to")
+        addTag("Indoor - Outdoor")
+        addTag("Venues")
+        addTag("Photographers")
         addTag("TagListView").isSelected = true
     }
     
